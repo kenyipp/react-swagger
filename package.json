@@ -1,7 +1,11 @@
 {
-	"name": "swagger-doc",
+	"name": "react-swagger",
+	"author": "Ken Yip <ken20206@gmail.com> (https://kenyip.cc)",
+	"contributors": [
+		"Ken Yip <ken20206@gmail.com> (https://kenyip.cc)"
+	],
 	"version": "0.1.0",
-	"private": true,
+	"private": false,
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"json-schema-ref-parser": "^9.0.6",
@@ -40,5 +44,23 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"description": "An web interface for Swagger based on React.js",
+	"main": "dist/react-swagger.js",
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kenyipp/react-swagger.git"
+	},
+	"keywords": [
+		"react",
+		"swagger",
+		"openAPI",
+		"documentation"
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kenyipp/react-swagger/issues"
+	},
+	"homepage": "https://github.com/kenyipp/react-swagger#readme"
 }
