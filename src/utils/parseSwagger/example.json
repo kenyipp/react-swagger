@@ -1,0 +1,2042 @@
+{
+    "info": {
+        "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+        "version": "1.0.5",
+        "title": "Swagger Petstore",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "externalDocs": {
+            "description": "Find out more about Swagger",
+            "url": "http://swagger.io"
+        }
+    },
+    "logo": "https://redocly.github.io/redoc/petstore-logo.png",
+    "endpoint": {
+        "schemes": [
+            "https",
+            "http"
+        ],
+        "host": "petstore.swagger.io",
+        "basePath": "/v2",
+        "baseUrls": [
+            "https://petstore.swagger.io/v2",
+            "http://petstore.swagger.io/v2"
+        ]
+    },
+    "authentication": [
+        {
+            "key": "basic",
+            "type": "basic",
+            "name": "Basic",
+            "description": "Use the root username and password to perform authorization",
+            "flow": "application",
+            "url": "https://auth.eforcity.com/api/login"
+        },
+        {
+            "key": "bearer",
+            "type": "bearer",
+            "name": "Bearer",
+            "description": "Use your own generated bearer token to perform authorization",
+            "url": "https://auth.eforcity.com/api/login"
+        },
+        {
+            "key": "api_key",
+            "type": "apiKey",
+            "name": "API Key",
+            "in": "header"
+        },
+        {
+            "key": "petstore_auth",
+            "type": "oauth2",
+            "name": "Pet Store Auth",
+            "flow": "implicit",
+            "url": "https://petstore.swagger.io/oauth/authorize",
+            "scopes": [
+                {
+                    "id": "read:pets",
+                    "description": "read your pets"
+                },
+                {
+                    "id": "write:pets",
+                    "description": "modify pets in your account"
+                }
+            ]
+        }
+    ],
+    "paths": [
+        {
+            "method": "post",
+            "path": "/pet/{petId}/uploadImage",
+            "id": "uploadFile",
+            "name": "Uploads an image",
+            "description": "",
+            "tags": [
+                "pet"
+            ],
+            "consumes": [
+                "multipart/form-data"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "petId",
+                            "in": "path",
+                            "description": "ID of pet to update",
+                            "required": true,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    ]
+                },
+                {
+                    "type": "formData",
+                    "parameters": [
+                        {
+                            "name": "additionalMetadata",
+                            "in": "formData",
+                            "description": "Additional data to pass to server",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "name": "file",
+                            "in": "formData",
+                            "description": "file to upload",
+                            "required": false,
+                            "type": "file"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": [
+                            {
+                                "field": "code",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            {
+                                "field": "type",
+                                "type": "string"
+                            },
+                            {
+                                "field": "message",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/pet",
+            "id": "addPet",
+            "name": "Add a new pet to the store",
+            "description": "",
+            "tags": [
+                "pet"
+            ],
+            "consumes": [
+                "application/json",
+                "application/xml"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "Pet object that needs to be added to the store",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "category",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "object",
+                                        "properties": [
+                                            {
+                                                "field": "id",
+                                                "xml": {
+                                                    "name": "Category"
+                                                },
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            {
+                                                "field": "name",
+                                                "xml": {
+                                                    "name": "Category"
+                                                },
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "field": "name",
+                                        "required": true,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "string",
+                                        "example": "doggie"
+                                    },
+                                    {
+                                        "field": "photoUrls",
+                                        "required": true,
+                                        "xml": {
+                                            "wrapped": true
+                                        },
+                                        "type": "array",
+                                        "schema": {
+                                            "type": "string",
+                                            "xml": {
+                                                "name": "photoUrl"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "field": "tags",
+                                        "required": false,
+                                        "xml": {
+                                            "wrapped": true
+                                        },
+                                        "type": "array",
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": [
+                                                {
+                                                    "field": "id",
+                                                    "xml": {
+                                                        "name": "tag"
+                                                    },
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                {
+                                                    "field": "name",
+                                                    "xml": {
+                                                        "name": "tag"
+                                                    },
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "field": "status",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "string",
+                                        "description": "pet status in the store",
+                                        "enum": [
+                                            "available",
+                                            "pending",
+                                            "sold"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "405",
+                    "description": "Invalid input"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "put",
+            "path": "/pet",
+            "id": "updatePet",
+            "name": "Update an existing pet",
+            "description": "",
+            "tags": [
+                "pet"
+            ],
+            "consumes": [
+                "application/json",
+                "application/xml"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "Pet object that needs to be added to the store",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "category",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "object",
+                                        "properties": [
+                                            {
+                                                "field": "id",
+                                                "xml": {
+                                                    "name": "Category"
+                                                },
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            {
+                                                "field": "name",
+                                                "xml": {
+                                                    "name": "Category"
+                                                },
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "field": "name",
+                                        "required": true,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "string",
+                                        "example": "doggie"
+                                    },
+                                    {
+                                        "field": "photoUrls",
+                                        "required": true,
+                                        "xml": {
+                                            "wrapped": true
+                                        },
+                                        "type": "array",
+                                        "schema": {
+                                            "type": "string",
+                                            "xml": {
+                                                "name": "photoUrl"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "field": "tags",
+                                        "required": false,
+                                        "xml": {
+                                            "wrapped": true
+                                        },
+                                        "type": "array",
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": [
+                                                {
+                                                    "field": "id",
+                                                    "xml": {
+                                                        "name": "tag"
+                                                    },
+                                                    "type": "integer",
+                                                    "format": "int64"
+                                                },
+                                                {
+                                                    "field": "name",
+                                                    "xml": {
+                                                        "name": "tag"
+                                                    },
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "field": "status",
+                                        "required": false,
+                                        "xml": {
+                                            "name": "Pet"
+                                        },
+                                        "type": "string",
+                                        "description": "pet status in the store",
+                                        "enum": [
+                                            "available",
+                                            "pending",
+                                            "sold"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "400",
+                    "description": "Invalid ID supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "Pet not found"
+                },
+                {
+                    "code": "405",
+                    "description": "Validation exception"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/pet/findByStatus",
+            "id": "findPetsByStatus",
+            "name": "Finds Pets by status",
+            "description": "Multiple status values can be provided with comma separated strings",
+            "tags": [
+                "pet"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "type": "array",
+                            "schema": {
+                                "type": "string",
+                                "enum": [
+                                    "available",
+                                    "pending",
+                                    "sold"
+                                ],
+                                "default": "available"
+                            },
+                            "name": "status",
+                            "in": "query",
+                            "description": "Status values that need to be considered for filter",
+                            "required": true,
+                            "collectionFormat": "multi"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "array",
+                        "schema": {
+                            "type": "object",
+                            "properties": [
+                                {
+                                    "field": "id",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                {
+                                    "field": "category",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "field": "id",
+                                            "xml": {
+                                                "name": "Category"
+                                            },
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        {
+                                            "field": "name",
+                                            "xml": {
+                                                "name": "Category"
+                                            },
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "field": "name",
+                                    "required": true,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "string",
+                                    "example": "doggie"
+                                },
+                                {
+                                    "field": "photoUrls",
+                                    "required": true,
+                                    "xml": {
+                                        "wrapped": true
+                                    },
+                                    "type": "array",
+                                    "schema": {
+                                        "type": "string",
+                                        "xml": {
+                                            "name": "photoUrl"
+                                        }
+                                    }
+                                },
+                                {
+                                    "field": "tags",
+                                    "required": false,
+                                    "xml": {
+                                        "wrapped": true
+                                    },
+                                    "type": "array",
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": [
+                                            {
+                                                "field": "id",
+                                                "xml": {
+                                                    "name": "tag"
+                                                },
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            {
+                                                "field": "name",
+                                                "xml": {
+                                                    "name": "tag"
+                                                },
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "field": "status",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "string",
+                                    "description": "pet status in the store",
+                                    "enum": [
+                                        "available",
+                                        "pending",
+                                        "sold"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid status value"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/pet/findByTags",
+            "id": "findPetsByTags",
+            "deprecated": true,
+            "name": "Finds Pets by tags",
+            "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+            "tags": [
+                "pet"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "type": "array",
+                            "schema": {
+                                "type": "string"
+                            },
+                            "name": "tags",
+                            "in": "query",
+                            "description": "Tags to filter by",
+                            "required": true,
+                            "collectionFormat": "multi"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "array",
+                        "schema": {
+                            "type": "object",
+                            "properties": [
+                                {
+                                    "field": "id",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                {
+                                    "field": "category",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "field": "id",
+                                            "xml": {
+                                                "name": "Category"
+                                            },
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        {
+                                            "field": "name",
+                                            "xml": {
+                                                "name": "Category"
+                                            },
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "field": "name",
+                                    "required": true,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "string",
+                                    "example": "doggie"
+                                },
+                                {
+                                    "field": "photoUrls",
+                                    "required": true,
+                                    "xml": {
+                                        "wrapped": true
+                                    },
+                                    "type": "array",
+                                    "schema": {
+                                        "type": "string",
+                                        "xml": {
+                                            "name": "photoUrl"
+                                        }
+                                    }
+                                },
+                                {
+                                    "field": "tags",
+                                    "required": false,
+                                    "xml": {
+                                        "wrapped": true
+                                    },
+                                    "type": "array",
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": [
+                                            {
+                                                "field": "id",
+                                                "xml": {
+                                                    "name": "tag"
+                                                },
+                                                "type": "integer",
+                                                "format": "int64"
+                                            },
+                                            {
+                                                "field": "name",
+                                                "xml": {
+                                                    "name": "tag"
+                                                },
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "field": "status",
+                                    "required": false,
+                                    "xml": {
+                                        "name": "Pet"
+                                    },
+                                    "type": "string",
+                                    "description": "pet status in the store",
+                                    "enum": [
+                                        "available",
+                                        "pending",
+                                        "sold"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid tag value"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/pet/{petId}",
+            "id": "getPetById",
+            "name": "Find pet by ID",
+            "description": "Returns a single pet",
+            "tags": [
+                "pet"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "petId",
+                            "in": "path",
+                            "description": "ID of pet to return",
+                            "required": true,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": [
+                            {
+                                "field": "id",
+                                "required": false,
+                                "xml": {
+                                    "name": "Pet"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "category",
+                                "required": false,
+                                "xml": {
+                                    "name": "Pet"
+                                },
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "xml": {
+                                            "name": "Category"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "name",
+                                        "xml": {
+                                            "name": "Category"
+                                        },
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            {
+                                "field": "name",
+                                "required": true,
+                                "xml": {
+                                    "name": "Pet"
+                                },
+                                "type": "string",
+                                "example": "doggie"
+                            },
+                            {
+                                "field": "photoUrls",
+                                "required": true,
+                                "xml": {
+                                    "wrapped": true
+                                },
+                                "type": "array",
+                                "schema": {
+                                    "type": "string",
+                                    "xml": {
+                                        "name": "photoUrl"
+                                    }
+                                }
+                            },
+                            {
+                                "field": "tags",
+                                "required": false,
+                                "xml": {
+                                    "wrapped": true
+                                },
+                                "type": "array",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "field": "id",
+                                            "xml": {
+                                                "name": "tag"
+                                            },
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        {
+                                            "field": "name",
+                                            "xml": {
+                                                "name": "tag"
+                                            },
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "field": "status",
+                                "required": false,
+                                "xml": {
+                                    "name": "Pet"
+                                },
+                                "type": "string",
+                                "description": "pet status in the store",
+                                "enum": [
+                                    "available",
+                                    "pending",
+                                    "sold"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid ID supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "Pet not found"
+                }
+            ],
+            "security": [
+                {
+                    "id": "api_key",
+                    "scopes": []
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/pet/{petId}",
+            "id": "updatePetWithForm",
+            "name": "Updates a pet in the store with form data",
+            "description": "",
+            "tags": [
+                "pet"
+            ],
+            "consumes": [
+                "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "petId",
+                            "in": "path",
+                            "description": "ID of pet that needs to be updated",
+                            "required": true,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    ]
+                },
+                {
+                    "type": "formData",
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "in": "formData",
+                            "description": "Updated name of the pet",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "name": "status",
+                            "in": "formData",
+                            "description": "Updated status of the pet",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "405",
+                    "description": "Invalid input"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "delete",
+            "path": "/pet/{petId}",
+            "id": "deletePet",
+            "name": "Deletes a pet",
+            "description": "",
+            "tags": [
+                "pet"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "header",
+                    "parameters": [
+                        {
+                            "name": "api_key",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "petId",
+                            "in": "path",
+                            "description": "Pet id to delete",
+                            "required": true,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "400",
+                    "description": "Invalid ID supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "Pet not found"
+                }
+            ],
+            "security": [
+                {
+                    "id": "petstore_auth",
+                    "scopes": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/store/order",
+            "id": "placeOrder",
+            "name": "Place an order for a pet",
+            "description": "",
+            "tags": [
+                "store"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "order placed for purchasing the pet",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "petId",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "quantity",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "integer",
+                                        "format": "int32"
+                                    },
+                                    {
+                                        "field": "shipDate",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    {
+                                        "field": "status",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "string",
+                                        "description": "Order Status",
+                                        "enum": [
+                                            "placed",
+                                            "approved",
+                                            "delivered"
+                                        ]
+                                    },
+                                    {
+                                        "field": "complete",
+                                        "xml": {
+                                            "name": "Order"
+                                        },
+                                        "type": "boolean"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": [
+                            {
+                                "field": "id",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "petId",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "quantity",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            {
+                                "field": "shipDate",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "field": "status",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "string",
+                                "description": "Order Status",
+                                "enum": [
+                                    "placed",
+                                    "approved",
+                                    "delivered"
+                                ]
+                            },
+                            {
+                                "field": "complete",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "boolean"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid Order"
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/store/order/{orderId}",
+            "id": "getOrderById",
+            "name": "Find purchase order by ID",
+            "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+            "tags": [
+                "store"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "orderId",
+                            "in": "path",
+                            "description": "ID of pet that needs to be fetched",
+                            "required": true,
+                            "type": "integer",
+                            "maximum": 10,
+                            "minimum": 1,
+                            "format": "int64"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": [
+                            {
+                                "field": "id",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "petId",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "quantity",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            {
+                                "field": "shipDate",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "field": "status",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "string",
+                                "description": "Order Status",
+                                "enum": [
+                                    "placed",
+                                    "approved",
+                                    "delivered"
+                                ]
+                            },
+                            {
+                                "field": "complete",
+                                "xml": {
+                                    "name": "Order"
+                                },
+                                "type": "boolean"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid ID supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "Order not found"
+                }
+            ]
+        },
+        {
+            "method": "delete",
+            "path": "/store/order/{orderId}",
+            "id": "deleteOrder",
+            "name": "Delete purchase order by ID",
+            "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+            "tags": [
+                "store"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "orderId",
+                            "in": "path",
+                            "description": "ID of the order that needs to be deleted",
+                            "required": true,
+                            "type": "integer",
+                            "minimum": 1,
+                            "format": "int64"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "400",
+                    "description": "Invalid ID supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "Order not found"
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/store/inventory",
+            "id": "getInventory",
+            "name": "Returns pet inventories by status",
+            "description": "Returns a map of status codes to quantities",
+            "tags": [
+                "store"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": []
+                    }
+                }
+            ],
+            "security": [
+                {
+                    "id": "api_key",
+                    "scopes": []
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/user/createWithArray",
+            "id": "createUsersWithArrayInput",
+            "name": "Creates list of users with given input array",
+            "description": "",
+            "tags": [
+                "user"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "List of user object",
+                            "required": true,
+                            "schema": {
+                                "type": "array",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "field": "id",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        {
+                                            "field": "username",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "firstName",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "lastName",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "email",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "password",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "phone",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "userStatus",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "description": "User Status"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "default",
+                    "description": "successful operation"
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/user/createWithList",
+            "id": "createUsersWithListInput",
+            "name": "Creates list of users with given input array",
+            "description": "",
+            "tags": [
+                "user"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "List of user object",
+                            "required": true,
+                            "schema": {
+                                "type": "array",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "field": "id",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "integer",
+                                            "format": "int64"
+                                        },
+                                        {
+                                            "field": "username",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "firstName",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "lastName",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "email",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "password",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "phone",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "string"
+                                        },
+                                        {
+                                            "field": "userStatus",
+                                            "xml": {
+                                                "name": "User"
+                                            },
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "description": "User Status"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "default",
+                    "description": "successful operation"
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/user/{username}",
+            "id": "getUserByName",
+            "name": "Get user by user name",
+            "description": "",
+            "tags": [
+                "user"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "description": "The name that needs to be fetched. Use user1 for testing. ",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "object",
+                        "properties": [
+                            {
+                                "field": "id",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            {
+                                "field": "username",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "firstName",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "lastName",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "email",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "password",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "phone",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "string"
+                            },
+                            {
+                                "field": "userStatus",
+                                "xml": {
+                                    "name": "User"
+                                },
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "User Status"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid username supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "User not found"
+                }
+            ]
+        },
+        {
+            "method": "put",
+            "path": "/user/{username}",
+            "id": "updateUser",
+            "name": "Updated user",
+            "description": "This can only be done by the logged in user.",
+            "tags": [
+                "user"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "description": "name that need to be updated",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "Updated user object",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "username",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "firstName",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "lastName",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "email",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "password",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "phone",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "userStatus",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "description": "User Status"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "400",
+                    "description": "Invalid user supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "User not found"
+                }
+            ]
+        },
+        {
+            "method": "delete",
+            "path": "/user/{username}",
+            "id": "deleteUser",
+            "name": "Delete user",
+            "description": "This can only be done by the logged in user.",
+            "tags": [
+                "user"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "path",
+                    "parameters": [
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "description": "The name that needs to be deleted",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "400",
+                    "description": "Invalid username supplied"
+                },
+                {
+                    "code": "404",
+                    "description": "User not found"
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/user/login",
+            "id": "loginUser",
+            "name": "Logs user into the system",
+            "description": "",
+            "tags": [
+                "user"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "username",
+                            "in": "query",
+                            "description": "The user name for login",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "in": "query",
+                            "description": "The password for login in clear text",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "200",
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "code": "400",
+                    "description": "Invalid username/password supplied"
+                }
+            ]
+        },
+        {
+            "method": "get",
+            "path": "/user/logout",
+            "id": "logoutUser",
+            "name": "Logs out current logged in user session",
+            "description": "",
+            "tags": [
+                "user"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [],
+            "responses": [
+                {
+                    "code": "default",
+                    "description": "successful operation"
+                }
+            ]
+        },
+        {
+            "method": "post",
+            "path": "/user",
+            "id": "createUser",
+            "name": "Create user",
+            "description": "This can only be done by the logged in user.",
+            "tags": [
+                "user"
+            ],
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json",
+                "application/xml"
+            ],
+            "parameters": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "Created user object",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": [
+                                    {
+                                        "field": "id",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    {
+                                        "field": "username",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "firstName",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "lastName",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "email",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "password",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "phone",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "string"
+                                    },
+                                    {
+                                        "field": "userStatus",
+                                        "xml": {
+                                            "name": "User"
+                                        },
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "description": "User Status"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "responses": [
+                {
+                    "code": "default",
+                    "description": "successful operation"
+                }
+            ]
+        }
+    ],
+    "groups": [
+        {
+            "name": "General",
+            "tags": [
+                "pet",
+                "store"
+            ]
+        },
+        {
+            "name": "User Management",
+            "tags": [
+                "user"
+            ]
+        }
+    ]
+}

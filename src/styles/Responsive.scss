@@ -1,0 +1,22 @@
+@media screen and(max-width: 996px) {
+	.response__background {
+		display: none;
+	}
+	section {
+		display: block;
+		width: 100%;
+		& > div.content,
+		div.response {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and(max-width: 768px) {
+	.sidebar {
+		display: none !important;
+	}
+	main.main {
+		left: 0;
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"name": "swagger-doc",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"classnames": "^2.2.6",
+		"json-schema-ref-parser": "^9.0.6",
+		"lodash": "^4.17.20",
+		"lunr": "^2.3.9",
+		"marked": "^1.2.5",
+		"node-sass": "4.14.1",
+		"prismjs": "^1.22.0",
+		"react": "^17.0.1",
+		"react-anchor-link-smooth-scroll": "^1.0.12",
+		"react-collapse": "^5.1.0",
+		"react-dom": "^17.0.1",
+		"react-perfect-scrollbar": "^1.5.8",
+		"react-scripts": "4.0.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}

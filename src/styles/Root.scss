@@ -1,0 +1,22 @@
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	font-family: Roboto, sans-serif;
+
+	overscroll-behavior-y: none;
+}
+
+.ReactCollapse--collapse {
+	transition: height 0.3s ease-in-out;
+}
+
+.ps__thumb-y {
+	width: 4px;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.05), inset 1px 1px 0 rgba(0, 0, 0, 0.05);
+	box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.05), inset 1px 1px 0 rgba(0, 0, 0, 0.05);
+}

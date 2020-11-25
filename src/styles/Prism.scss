@@ -1,0 +1,263 @@
+pre[class*="language-"] {
+	background: #1e2224;
+	font-size: 75%;
+	line-height: 1.5;
+	border: 0;
+	direction: ltr;
+	text-align: left;
+	word-wrap: normal;
+	white-space: nowrap;
+	position: relative;
+	will-change: transform;
+}
+pre[class*="language-"].soft-wrap {
+	white-space: pre-wrap;
+}
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection {
+	color: inherit;
+	background: rgba(33, 66, 131, 0.85);
+}
+pre .line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: 0;
+	margin-top: 1rem;
+	background: rgba(33, 66, 131, 0.85);
+	border-left: 4px solid #f92672;
+	pointer-events: none;
+	z-index: 1;
+}
+pre > code[class*="language-"] {
+	color: #a9b7c6;
+	direction: ltr;
+	text-align: left;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	word-wrap: normal;
+	word-break: break-all;
+	white-space: pre;
+	tab-size: 2;
+	hyphens: none;
+	display: block;
+	-webkit-overflow-scrolling: touch;
+	will-change: transform;
+}
+pre > code[class*="language-"].soft-wrap {
+	white-space: pre-wrap;
+}
+pre > code[class*="language-"]::-moz-selection,
+pre > code[class*="language-"] ::-moz-selection {
+	color: inherit;
+	background: rgba(33, 66, 131, 0.85);
+}
+pre > code[class*="language-"]::selection,
+pre > code[class*="language-"] ::selection {
+	color: inherit;
+	background: rgba(33, 66, 131, 0.85);
+}
+pre > code[class*="language-"] .token {
+	position: relative;
+	z-index: 1;
+}
+pre > code[class*="language-"] .token.comment,
+pre > code[class*="language-"] .token.prolog,
+pre > code[class*="language-"] .token.cdata {
+	color: gray;
+}
+pre > code[class*="language-"] .token.comment > .url,
+pre > code[class*="language-"] .token.comment > .url-link,
+pre > code[class*="language-"] .token.comment > .email-link,
+pre > code[class*="language-"] .token.prolog > .url,
+pre > code[class*="language-"] .token.prolog > .url-link,
+pre > code[class*="language-"] .token.prolog > .email-link,
+pre > code[class*="language-"] .token.cdata > .url,
+pre > code[class*="language-"] .token.cdata > .url-link,
+pre > code[class*="language-"] .token.cdata > .email-link {
+	color: gray;
+	text-decoration: none;
+	box-shadow: gray 0 -1px 0 inset;
+}
+pre > code[class*="language-"] .token.comment > .url:hover,
+pre > code[class*="language-"] .token.comment > .url-link:hover,
+pre > code[class*="language-"] .token.comment > .email-link:hover,
+pre > code[class*="language-"] .token.prolog > .url:hover,
+pre > code[class*="language-"] .token.prolog > .url-link:hover,
+pre > code[class*="language-"] .token.prolog > .email-link:hover,
+pre > code[class*="language-"] .token.cdata > .url:hover,
+pre > code[class*="language-"] .token.cdata > .url-link:hover,
+pre > code[class*="language-"] .token.cdata > .email-link:hover {
+	color: #589df6;
+	box-shadow: #287bde 0 -1px 0 inset;
+}
+pre > code[class*="language-"] .token.doc-comment {
+	color: #629755;
+}
+pre > code[class*="language-"] .token.doc-comment > .token.keyword {
+	color: #526d4a;
+	text-decoration: underline;
+}
+pre > code[class*="language-"] .token.delimiter,
+pre > code[class*="language-"] .token.boolean,
+pre > code[class*="language-"] .token.keyword,
+pre > code[class*="language-"] .token.selector,
+pre > code[class*="language-"] .token.important,
+pre > code[class*="language-"] .token.atrule {
+	font-weight: 700;
+	color: #f92672;
+}
+pre > code[class*="language-"] .token.operator,
+pre > code[class*="language-"] .token.punctuation,
+pre > code[class*="language-"] .token.attr-name {
+	color: #a9b7c6;
+}
+pre > code[class*="language-"] .token.tag {
+	color: #e8bf6a;
+}
+pre > code[class*="language-"] .token.tag .punctuation {
+	color: #e8bf6a;
+}
+pre > code[class*="language-"] .token.tag .attr-name {
+	color: #bababa;
+}
+pre > code[class*="language-"] .token.tag .class-name {
+	color: #e8bf6a;
+}
+pre > code[class*="language-"] .token.doctype,
+pre > code[class*="language-"] .token.builtin {
+	color: #e8bf6a;
+}
+pre > code[class*="language-"] .token.entity,
+pre > code[class*="language-"] .token.number,
+pre > code[class*="language-"] .token.symbol {
+	color: #ae81ff;
+}
+pre > code[class*="language-"] .token.property,
+pre > code[class*="language-"] .token.parameter {
+	color: #cf8822;
+}
+pre > code[class*="language-"] .token.constant,
+pre > code[class*="language-"] .token.console.class-name,
+pre > code[class*="language-"] .token.dom.variable {
+	color: #4186f8;
+}
+pre > code[class*="language-"] .token.variable {
+	color: #cbad96;
+}
+pre > code[class*="language-"] .token.string,
+pre > code[class*="language-"] .token.char {
+	color: #e6db74;
+}
+pre > code[class*="language-"] .token.attr-value {
+	color: #a6e22e;
+}
+pre > code[class*="language-"] .token.attr-value .punctuation {
+	color: #a6e22e;
+}
+pre > code[class*="language-"] .token.attr-value .punctuation:first-child {
+	color: #a9b7c6;
+}
+pre > code[class*="language-"] .token.url,
+pre > code[class*="language-"] .token.url-link,
+pre > code[class*="language-"] .token.email-link {
+	color: #589df6;
+	text-decoration: none;
+	box-shadow: #287bde 0 -1px 0 inset;
+}
+pre > code[class*="language-"] .token.url:hover,
+pre > code[class*="language-"] .token.url-link:hover,
+pre > code[class*="language-"] .token.email-link:hover {
+	color: #589df6;
+	text-decoration: none;
+	box-shadow: #287bde 0 -1px 0 inset;
+}
+pre > code[class*="language-"] .token.function {
+	color: #a6e22e;
+}
+pre > code[class*="language-"] .token.function .maybe-class-name {
+	color: #a6e22e;
+}
+pre > code[class*="language-"] .token.regex {
+	color: #e6db74;
+	background: #143d1b;
+}
+pre > code[class*="language-"] .token.class-name,
+pre > code[class*="language-"] .token.maybe-class-name {
+	color: #66d9ee;
+}
+pre > code[class*="language-"] .token.property-access {
+	color: #cf8822;
+}
+pre > code[class*="language-"] .token.property-access.function,
+pre > code[class*="language-"] .token.property-access.method {
+	color: #a6e22e;
+}
+pre > code[class*="language-"] .token.abstract > .token.class-name,
+pre > code[class*="language-"] .token.abstract > .token.maybe-class-name {
+	color: #00cfd3;
+}
+pre > code[class*="language-"] .token.interface > .token.class-name,
+pre > code[class*="language-"] .token.interface > .token.maybe-class-name {
+	color: #0ed38b;
+}
+pre > code[class*="language-"] .token.object > .token.class-name,
+pre > code[class*="language-"] .token.object > .token.maybe-class-name {
+	font-weight: 700;
+}
+pre > code[class*="language-"] .token.annotation {
+	color: #bbb529;
+}
+pre > code[class*="language-"] .token.interpolation {
+	color: #fd971f;
+}
+pre > code[class*="language-"] .token.interpolation > .token.delimiter {
+	color: #cf8822;
+}
+pre > code[class*="language-"] .token.generics > .token.class-name,
+pre > code[class*="language-"] .token.maybe-generic-template {
+	color: #20999d;
+}
+pre > code[class*="language-"] .token.label.symbol {
+	color: #467cda;
+}
+pre > code[class*="language-"] .token.namespace {
+	color: #a9b7c6;
+}
+pre > code[class*="language-"] .token.bold {
+	font-weight: 700;
+}
+pre > code[class*="language-"] .token.italic {
+	font-style: italic;
+}
+pre > code[class*="language-"] .token.inserted {
+	background: #294436;
+}
+pre > code[class*="language-"] .token.deleted {
+	background: #484a4a;
+}
+pre > code[class*="language-css"] .token.property {
+	color: #a6e22e;
+}
+pre > code[class*="language-css"] .token.property + .token.punctuation {
+	color: #a6e22e;
+}
+pre > code[class*="language-css"] .token.id {
+	color: #f92672;
+}
+pre > code[class*="language-css"] .token.selector > .token.class,
+pre > code[class*="language-css"] .token.selector > .token.attribute,
+pre > code[class*="language-css"] .token.selector > .token.pseudo-class,
+pre > code[class*="language-css"] .token.selector > .token.pseudo-element {
+	color: #f92672;
+}
+pre > code[class*="language-kotlin"],
+pre > code[class*="language-java"],
+pre > code[class*="language-javascript"],
+pre > code[class*="language-typescript"],
+pre > code[class*="language-scala"],
+pre > code[class*="language-swift"] {
+	color: #cbad96;
+}

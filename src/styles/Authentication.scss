@@ -1,0 +1,26 @@
+$table-padding: 8px 10px;
+
+#authentication > .content > div {
+	margin-bottom: 62px;
+
+	& > h4 {
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	& > table > tbody > tr {
+		& > th {
+			width: 250px;
+			padding: $table-padding;
+		}
+		& > td {
+			padding: $table-padding;
+			& > div {
+				margin-bottom: 20px;
+				&> ul {
+					margin: 10px 0;
+				}
+			}
+		}
+	}
+}

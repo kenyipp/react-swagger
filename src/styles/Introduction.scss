@@ -1,0 +1,22 @@
+@import "./Variable.scss";
+
+.introduction__contact-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	margin-bottom: 16px;
+
+	& > li {
+		&:last-child::after {
+			content: "";
+		}
+		display: inline-block;
+		margin-right: 12px;
+		&::after {
+			content: "|";
+			margin-left: 12px;
+			font-size: 10px;
+			color: #aaa;
+		}
+	}
+}

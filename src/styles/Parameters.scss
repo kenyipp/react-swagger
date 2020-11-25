@@ -1,0 +1,134 @@
+@import "./Variable.scss";
+
+.parameter__container {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	& > li {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-left: 1px solid $highlight;
+
+		&.first {
+			background-image: linear-gradient(transparent 0%, transparent 24px, $highlight 24px, $highlight 100%);
+		}
+
+		&.last {
+			background-image: linear-gradient($highlight 0%, $highlight 24px, transparent 24px, transparent 100%);
+		}
+
+		&.first,
+		&.last {
+			border-left-width: 0px;
+			background-repeat: no-repeat;
+			background-position: left top;
+			background-size: 1px 100%;
+		}
+
+		&.first.last {
+			background-image: none;
+		}
+
+		& > span {
+			display: flex;
+			align-items: center;
+			margin-right: 12px;
+			&::after {
+				display: inline-block;
+				width: 1px;
+				height: 7px;
+				content: "";
+				vertical-align: middle;
+				background: $highlight;
+			}
+			&::before {
+				display: inline-block;
+				width: 10px;
+				height: 1px;
+				content: "";
+				vertical-align: middle;
+				background: $highlight;
+			}
+		}
+
+		& > div {
+			padding: 5px 0;
+		}
+	}
+}
+
+.parameter__attribute {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 200px;
+	color: black;
+	& > label {
+		margin-bottom: 0;
+	}
+	& > .required {
+		font-size: 10px;
+		color: red;
+	}
+}
+
+.parameter__description {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	min-height: 49px;
+	color: black;
+	& > .date-type {
+		font-size: 10px;
+		color: gray;
+		& > .type {
+			margin-right: 4px;
+		}
+	}
+}
+
+.parameter--response__container {
+	margin-top: 24px;
+	& > h4 {
+		font-size: 16px;
+		font-weight: 400;
+	}
+}
+
+.parameter--response__well {
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+	color: rgb(29, 129, 39);
+	background-color: rgba(29, 129, 39, 0.07);
+	margin-bottom: 12px;
+
+	& > label {
+		font-weight: 600;
+		margin-right: 6px;
+	}
+
+	& > i {
+		margin-right: 10px;
+	}
+
+	& > .code {
+		margin: 0;
+		margin-right: 6px;
+	}
+
+	& > .description {
+	}
+}
+
+.parameter--response__well--failure {
+	@extend .parameter--response__well;
+	color: rgb(212, 31, 28);
+	background-color: rgba(212, 31, 28, 0.07);
+}
