@@ -1,5 +1,5 @@
 "use strict";
-const getSchema = require("./getSchema");
+import getSchema from "./getSchema";
 
 function getCurlCommand(path, endpoint) {
 
@@ -45,4 +45,4 @@ function getCurlCommand(path, endpoint) {
 	return commands.join(" \\\n");
 }
 
-module.exports = getCurlCommand;
+export default getCurlCommand;

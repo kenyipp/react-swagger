@@ -8,7 +8,7 @@ import Introduction from "./components/Introduction";
 import Authentication from "./components/Authentication";
 import APISection from "./components/APISection";
 import parseSwagger from "./utils/parseSwagger";
-require("prismjs/components/prism-json");
+import "prismjs/components/prism-json";
 
 class App extends React.Component {
 
@@ -52,7 +52,7 @@ class App extends React.Component {
 
 	render() {
 
-		const { loading, loaded, json, active } = this.state;
+		const { loaded, json, active } = this.state;
 
 		if (!loaded)
 			return (
@@ -74,8 +74,8 @@ class App extends React.Component {
 					options={{ suppressScrollX: true }}
 					onScrollY={this.onScroll}
 				>
-					<Introduction data={json.info} />
-					<Authentication data={json.authentication} />
+					{/* <Introduction data={json.info} /> */}
+					{/* <Authentication data={json.authentication} /> */}
 					{
 						json.paths.map((path, index) => (
 							<APISection

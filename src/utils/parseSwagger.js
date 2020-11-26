@@ -1,6 +1,6 @@
 "use strict";
-const _ = require("lodash");
-const RefParser = require("json-schema-ref-parser");
+import _ from "lodash";
+import RefParser from "json-schema-ref-parser";
 
 async function parse(json) {
 
@@ -140,4 +140,4 @@ function parseSchema(schema) {
 	}
 }
 
-module.exports = parse;
+export default parse;

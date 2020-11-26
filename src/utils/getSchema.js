@@ -39,4 +39,4 @@ function getSchema(schema, options = {}) {
 	return json;
 }
 
-module.exports = getSchema;
+export default getSchema;
