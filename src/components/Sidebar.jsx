@@ -138,7 +138,8 @@ class Sidebar extends React.Component {
 				}
 
 				<div className="search-container">
-					<i className="fa fa-search" />
+				<div className="search icon"></div>
+
 					<input
 						placeholder="Search"
 						onChange={event => this.setState({ query: event.target.value }, this.search)}
@@ -187,7 +188,7 @@ class Sidebar extends React.Component {
 										onClick={() => this.setState({ selected: isSelected ? null : menu.name })}
 									>
 										<span> {_.startCase(menu.name)} </span>
-										<i className={`fa fa-angle-${isSelected ? "down" : "right"}`} />
+										<div className={`arrow--${isSelected ? "down" : "right"}`} />
 									</a>
 									<Collapse isOpened={selected == menu.name}>
 										<ul className={classnames("navigation__menu")}>

@@ -74,8 +74,8 @@ class App extends React.Component {
 					options={{ suppressScrollX: true }}
 					onScrollY={this.onScroll}
 				>
-					{/* <Introduction data={json.info} /> */}
-					{/* <Authentication data={json.authentication} /> */}
+					<Introduction data={json.info} />
+					<Authentication data={json.authentication} />
 					{
 						json.paths.map((path, index) => (
 							<APISection

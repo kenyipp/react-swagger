@@ -1,8 +1,7 @@
 import React from "react";
-import loading from "../assets/loading.svg";
 
 export default () => (
 	<div className="loading__container">
-		<img src={loading} />
+		<img src="https://asset.kenyip.cc/loading.svg" />
 	</div>
 );

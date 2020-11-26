@@ -44,7 +44,7 @@ class Response extends React.Component {
 					onClick={() => this.setState({ opened: !opened })}
 				>
 					{
-						hasSample && <i className={`fa fa-angle-${opened ? "down" : "right"}`} />
+						hasSample && <div className={`arrow--${opened ? "down" : "right"}`} />
 					}
 					<label className="code">{data.code}</label>
 					<span className="description">{data.description}</span>

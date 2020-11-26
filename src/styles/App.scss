@@ -41,3 +41,35 @@ main.main {
 	align-items: center;
 	justify-content: center;
 }
+
+.arrow {
+	border: solid black;
+	border-width: 0 2px 2px 0;
+	display: inline-block;
+	padding: 3px;
+	border-radius: 1px;
+}
+
+.arrow--right {
+	@extend .arrow;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.arrow--left {
+	@extend .arrow;
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+}
+
+.arrow--up {
+	@extend .arrow;
+	transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+}
+
+.arrow--down {
+	@extend .arrow;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+}

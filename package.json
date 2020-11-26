@@ -7,7 +7,9 @@
 	"version": "0.1.0",
 	"private": false,
 	"dependencies": {
+		"axios": "^0.21.0",
 		"classnames": "^2.2.6",
+		"is-url": "^1.2.4",
 		"json-schema-ref-parser": "^9.0.6",
 		"lodash": "^4.17.20",
 		"lunr": "^2.3.9",

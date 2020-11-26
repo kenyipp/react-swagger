@@ -21,14 +21,16 @@
 		align-items: center;
 		margin: 10px 20px;
 		border-bottom: 1px solid #ccc;
-		& > i {
-			font-size: 12px;
+		& > div {
+			height: 12px;
+			width: 12px;
 			margin: 0 5px;
 		}
 		& > input {
+			margin-left: 24px;
 			position: relative;
 			width: 100%;
-			padding: 5px 10px 5px 5px;
+			padding: 10px 10px 5px 5px;
 			border: 0;
 			background-color: transparent;
 			box-shadow: none;
@@ -87,7 +89,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 4px 16px;
+		padding: 4px 24px 4px 16px;
 		cursor: pointer;
 		color: black;
 		& > i {
@@ -125,4 +127,27 @@
 			}
 		}
 	}
+}
+
+.search.icon {
+	color: #000;
+	position: absolute;
+	margin-top: 2px;
+	margin-left: 3px;
+	width: 10px;
+	height: 10px;
+	border: solid 1px currentColor;
+	border-radius: 100%;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.search.icon:before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: 4px;
+	height: 8px;
+	width: 1px;
+	background-color: currentColor;
 }

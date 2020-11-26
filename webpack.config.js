@@ -24,5 +24,7 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [new UglifyJsPlugin()],
+	plugins: [
+		new UglifyJsPlugin()
+	],
 };
