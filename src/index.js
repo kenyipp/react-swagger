@@ -1,31 +1,30 @@
 import React from "react";
 import axios from "axios";
-import isUrl from "is-url";
 import ReactDOM from "react-dom";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "./styles/index.scss";
 import App from "./App";
 
-export async function initialize(swagger) {
+function initialize() {
 
-	let json;
+	const tag = document.getElementsByTagName("doc")[0];
 
-	if (isUrl(swagger)) {
-		json = await axios.get(swagger).then(response => response.data);
-	} else {
-		json = swagger;
-	}
+	if (!tag)
+		console.error("No <doc> element is found");
 
-	ReactDOM.render(
-		<React.StrictMode>
-			<App swagger={json} />
-		</React.StrictMode>,
-		document.getElementById("root")
-	);
-
+	const url = tag.getAttribute("data-script");
+	
+	axios
+		.get(url)
+		.then(response => response.data)
+		.then(json => {
+			ReactDOM.render(
+				<React.StrictMode>
+					<App swagger={json} />
+				</React.StrictMode>,
+				document.getElementById("root")
+			);
+		});		
 }
 
-
-if (process.env.NODE_ENV === "development")
-	initialize("https://asset.kenyip.cc/pet-store-swagger.json");
-
+initialize();
