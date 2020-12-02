@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import _ from "lodash";
 import Prism from "prismjs";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -23,15 +24,29 @@ class App extends React.Component {
 	}
 
 	async componentDidMount() {
-		const swagger = await import("./swagger.json");
-		const json = await parseSwagger(swagger);
-		this.setState({
-			loaded: true,
-			loading: false,
-			json: json
-		}, () => {
-			Prism.highlightAll();
-		});
+
+		try {
+			const url = document
+				.getElementsByTagName("doc")[0]
+				.getAttribute("data-script");
+
+			const swagger = await axios
+				.get(url)
+				.then(response => response.data);
+
+			const json = await parseSwagger(swagger);
+			
+			this.setState({
+				loaded: true,
+				loading: false,
+				json: json
+			}, () => {
+				Prism.highlightAll();
+			});
+
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	onScroll(container) {
@@ -42,7 +57,7 @@ class App extends React.Component {
 				if (id) {
 					const active = _.last(id.split("-"));
 					if (this.state.active != active) {
-						window.history.replaceState(void 0, void 0, `${window.location.origin}/#${id}`);
+						window.history.replaceState(void 0, void 0, `${window.location.origin}${window.location.pathname}#${id}`);
 						return this.setState({ active: active });
 					}
 				}

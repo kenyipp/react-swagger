@@ -10,7 +10,7 @@ const webpack = require("webpack");
 const defaults = rewire("react-scripts/scripts/build.js");
 const config = defaults.__get__("config");
 
-config.output.filename = "bundle.js";
+config.output.filename = "react-swagger.js";
 delete config.output.chunkFilename;
 
 // Consolidate chunk files instead
